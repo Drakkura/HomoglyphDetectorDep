@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homoglyph Detector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+</head>
+<body class="bg-cyber-dark text-gray-200 font-sans">
+
+    <nav class="navigator backdrop-blur-md bg-opacity-90 sticky top-0 z-50 shadow-md">
+        <div class="flex items-center gap-6">
+            <a class="nav-link active hover:text-white transition flex items-center gap-2" href="#home">
+                <i class="fi fi-rr-home"></i> <span>Home</span>
+            </a>
+            <a class="nav-link hover:text-white transition flex items-center gap-2" href="#news">
+                <i class="fi fi-rr-newspaper"></i> <span>News</span>
+            </a>
+        </div>
+        
+        <h1 class="text-xl font-bold tracking-wider uppercase text-center flex-grow">
+            Homoglyph <span class="text-accent-green">Detector</span>
+        </h1>
+        
+        <div class="dropdown relative">
+            <button class="dropbtn font-semibold flex items-center gap-2 focus:outline-none"> 
+                <i class="fi fi-rr-globe"></i> <span id="current-lang">ENG</span> 
+                <i class="fi fi-rr-angle-small-down"></i>
+            </button>
+            <div class="dropdown-content absolute right-0 mt-2 rounded-lg shadow-xl overflow-hidden bg-gray-800 hidden">
+                <a href="#" data-lang="id" class="block px-4 py-2 hover:bg-gray-700 transition">Indonesia</a>
+                <a href="#" data-lang="en" class="block px-4 py-2 hover:bg-gray-700 transition">English</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto p-6 space-y-10 mt-6">
+        
+        <div class="carousel-container rounded-2xl overflow-hidden shadow-2xl border border-gray-800 relative h-64 bg-gray-900">
+            <div class="carousel h-full w-full relative">
+                <img src="img/carousel1.png" alt="Security Illustration" class="carousel-item active-slide object-cover w-full h-full absolute transition-opacity duration-500 opacity-100">
+                <img src="img/carousel2.png" alt="Phishing Illustration" class="carousel-item object-cover w-full h-full absolute transition-opacity duration-500 opacity-0">
+            </div>
+            <button class="prev-button absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-accent-green hover:text-black transition z-10">&#10094;</button>
+            <button class="next-button absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-accent-green hover:text-black transition z-10">&#10095;</button>
+            
+            <div class="carousel-indicators absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+                <span class="indicator active-indicator w-3 h-3 bg-white rounded-full cursor-pointer opacity-75"></span>
+                <span class="indicator w-3 h-3 bg-gray-400 rounded-full cursor-pointer opacity-50"></span>
+            </div>
+        </div>
+
+        <section class="text-center space-y-4">
+            <h2 class="text-3xl font-bold text-white tracking-tight" data-key="title">Enter a URL to Detect Homoglyphs</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto" data-key="subtitle">Protect yourself from phishing attacks where characters look identical but point to different websites.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+                <div class="step-card">
+                    <div class="icon-box"><i class="fi fi-rr-copy"></i></div>
+                    <h3 class="font-bold text-white" data-key="step1_title">1. Copy URL</h3>
+                    <p class="text-sm text-gray-400" data-key="step1_desc">Copy the link you want to check.</p>
+                </div>
+                <div class="step-card">
+                    <div class="icon-box"><i class="fi fi-rr-search-alt"></i></div>
+                    <h3 class="font-bold text-white" data-key="step2_title">2. Paste & Detect</h3>
+                    <p class="text-sm text-gray-400" data-key="step2_desc">Paste into the box below and hit Detect.</p>
+                </div>
+                <div class="step-card">
+                    <div class="icon-box"><i class="fi fi-rr-shield-check"></i></div>
+                    <h3 class="font-bold text-white" data-key="step3_title">3. Analyze</h3>
+                    <p class="text-sm text-gray-400" data-key="step3_desc">See if hidden characters are found.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="bg-gray-900 border border-gray-700 p-8 rounded-2xl shadow-lg transform transition hover:border-gray-600">
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="relative flex-grow">
+                    <div id="input-icon" class="absolute inset-y-0 left-4 flex items-center pointer-events-none transition-opacity duration-200">
+                        <i class="fi fi-rr-link text-gray-500 text-lg"></i>
+                    </div>
+                    <input type="text" id="url-input" 
+                        class="w-full pl-12 pr-4 py-4 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent-green focus:border-transparent transition text-lg" 
+                        placeholder="     e.g., apple.cοm or microsoft.com" required>
+                </div>
+                <button id="detect-button" data-key="detect" 
+                    class="bg-accent-green text-gray-900 font-bold py-4 px-8 rounded-xl hover:bg-green-400 transition shadow-lg hover:shadow-green-500/20 flex items-center justify-center gap-2 text-lg whitespace-nowrap">
+                    <i class="fi fi-rr-magic-wand"></i> <span class="btn-text">Detect</span>
+                </button>
+            </div>
+        </div>
+        
+        <div id="result-container" class="space-y-6">
+            </div>
+
+    </main>
+
+    <footer class="text-center py-8 text-gray-600 text-sm mt-12 border-t border-gray-800">
+        &copy; 2024 Homoglyph Detector Project. Stay Safe.
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
