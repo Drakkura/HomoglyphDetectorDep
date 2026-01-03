@@ -126,7 +126,7 @@ def detect_api():
         response_data["summary_message"] = "Warning: This URL contains characters that could be used in a homoglyph attack."
     else:
         response_data["summary_message"] = "This URL appears to be free of the checked homoglyphs."
-    time.sleep(3)
+    #time.sleep(3)
     return jsonify(response_data)
 
 if __name__ == '__main__':
